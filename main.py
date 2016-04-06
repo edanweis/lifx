@@ -16,9 +16,8 @@ api.add_resource(HelloWorld, '/')
 class Hello(Resource):
 	def get(self):
 		parser = reqparse.RequestParser()
-		parser.add_argument('location', type=str, required=False)
+		parser.add_argument('token', type=str, required=True help='Please provide your LIFX Token')
 		args = parser.parse_args()
-		# auth_payload = {"uid": args['location']}
 		token = args['token']
 		headers = {
 		    "Authorization": "Bearer %s" % token,
@@ -26,7 +25,7 @@ class Hello(Resource):
 		response = requests.get('https://api.lifx.com/v1/lights/all', auth=(token, ''))
 
 		# trigger change
-		return {'token': token}
+		return {'token': token, 'response status': response.status}
 		
 
 api.add_resource(Hello, '/token')
