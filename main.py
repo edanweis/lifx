@@ -5,7 +5,7 @@ import os
 # import requests
 
 app = Flask(__name__)
-api = Api(app)
+# api = Api(app)
 
 @app.route("/")
 def hello():
