@@ -17,9 +17,10 @@ class Hello(Resource):
 		headers = {
 		    "Authorization": "Bearer %s" % token,
 		}
-		response = requests.get('https://api.lifx.com/v1/lights/all', auth=(token, ''))
+		# response = requests.get('https://api.lifx.com/v1/lights/all', auth=(token, ''))
+
 		# trigger change
-		return response.status
+		return token
 		
 
 api.add_resource(Hello, '/')
