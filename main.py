@@ -1,7 +1,7 @@
 from flask import Flask
-from flask_restful import Resource, Api
-from flask_restful import reqparse
-import requests
+# from flask_restful import Resource, Api
+# from flask_restful import reqparse
+# import requests
 
 app = Flask(__name__)
 api = Api(app)
@@ -27,4 +27,5 @@ def hello():
 # api.add_resource(Hello, '/')
 
 if __name__ == '__main__':
-	app.run(port=33507, debug=True)
+	port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
