@@ -7,6 +7,12 @@ import requests
 app = Flask(__name__)
 api = Api(app)
 
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello': 'world'}
+
+api.add_resource(HelloWorld, '/')
+
 class Hello(Resource):
 	def get(self):
 		parser = reqparse.RequestParser()
@@ -17,13 +23,13 @@ class Hello(Resource):
 		headers = {
 		    "Authorization": "Bearer %s" % token,
 		}
-		# response = requests.get('https://api.lifx.com/v1/lights/all', auth=(token, ''))
+		response = requests.get('https://api.lifx.com/v1/lights/all', auth=(token, ''))
 
 		# trigger change
-		return token
+		return {'token': token}
 		
 
-api.add_resource(Hello, '/')
+api.add_resource(Hello, '/token')
 
 if __name__ == '__main__':
 	port = int(os.environ.get('PORT', 5000))
