@@ -16,7 +16,7 @@ api.add_resource(HelloWorld, '/')
 class Hello(Resource):
 	def get(self):
 		parser = reqparse.RequestParser()
-		parser.add_argument('token', type=str, required=True help='Please provide your LIFX Token')
+		parser.add_argument('token', type=str, required=True, help='Please provide your LIFX Token')
 		args = parser.parse_args()
 		token = args['token']
 		headers = {
